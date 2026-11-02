@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche des salles</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f4c75, #00b894);
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #0f4c75;
+            text-align: center;
+        }
+
+        /* Champs */
+        input, select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #00b894;
+            box-shadow: 0 0 5px rgba(0,184,148,0.5);
+        }
+
+        /* Barre de recherche */
+        .search-box {
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            width: 100%;
+        }
+
+        /* Controles */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .controls select,
+        .controls input {
+            flex: 1;
+        }
+
+        /* Bouton */
+        button {
+            background: linear-gradient(135deg, #0984e3, #00b894);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Liste */
+        #listeSalles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Carte salle */
+        .salle {
+            background: #f1f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #00b894;
+        }
+
+        @media(max-width: 600px){
+            #listeSalles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<main>
+    <form name="f2" method="POST" action="recherche.php">
+
+        <!-- RECHERCHE -->
+        <div class="search-box">
+            <input type="text" id="search" name="search" placeholder="Rechercher une salle...">
+        </div>
+
+        <!-- FILTRES -->
+        <div class="controls">
+
+            <select id="filterType" name="filterType">
+                <option value="">Tous les types</option>
+                <option value="informatique">Informatique</option>
+                <option value="conference">Conférence</option>
+                <option value="classique">Classique</option>
+            </select>
+
+            <select id="filterStatut" name="filterStatut">
+                <option value="">Tous les statuts</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Indisponible">Indisponible</option>
+            </select>
+
+            <select id="sortSelect" name="sortSelect">
+                <option value="">Trier par</option>
+                <option value="nom">Nom</option>
+                <option value="capacite">Capacité</option>
+                <option value="statut">Statut</option>
+            </select>
+
+            <select id="sortOrder" name="sortOrder">
+                <option value="asc">Ascendant ↑</option>
+                <option value="desc">Descendant ↓</option>
+            </select>
+
+            <!-- Bouton -->
+            <button type="submit">🔍 Rechercher</button>
+
+        </div>
+
+        <!-- LISTE -->
+        <section>
+            <h2>Liste des salles</h2>
+            <div id="listeSalles"></div>
+        </section>
+
+    </form>
+</main>
+
+</body>
+</html>

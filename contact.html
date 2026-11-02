@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact EmpowerTech Training Center - Visit us in Ferndale, Johannesburg or register for our tech training programs">
+  <title>Contact Us | EmpowerTech Training Center</title>
+  <link rel="stylesheet" href="style3.css">
+  <script src="salle.js"></script>
+</head>
+<body>
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header>
+    <h1>EmpowerTech Training Center</h1>
+    
+    <!-- Mobile hamburger menu button -->
+    <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      ☰ MENU
+    </button>
+    
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="index2.html">Home</a>
+      <a href="service.html">Services</a>
+      <a href="contact.html" class="active" aria-current="page">Contact</a>
+      <a href="gestion_salle.html">salles</a>
+
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- Contact Information Section -->
+    <section aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Visit or Contact Us</h2>
+      
+      <div class="contact-info">
+        <p>
+          <strong>Address:</strong> 
+          <address style="display: inline; font-style: normal;">
+            <a href="https://maps.app.goo.gl/CEHrGvtcmACRX8wZ7" >https://maps.app.goo.gl/CEHrGvtcmACRX8wZ7
+              
+            </a>
+          </address>
+        </p>
+        <p>
+          <strong>Phone:</strong> 
+          <a href="tel:+29 444 534">+29 444 534</a>
+        </p>
+        <p>
+          <strong>Email:</strong> 
+          <a href="ayedamina04@gmail.com">ayedamina04@gmail.com</a>
+        </p>
+        <p>
+          <strong>Heures de travail:</strong> Lundi - Vendredi : 8:00 AM - 5:00 PM<br>
+          samedi: 9:00 AM - 1:00 PM (par rendez vous)
+        </p>
+      </div>
+
+      <h3>Find Us on the Map</h3>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21295.69467801195!2d10.59582647431641!3d35.82965069999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130275764615dfe7%3A0xba8c779d10ddf84e!2sHorizon%20Academy%20of%20professional%20training!5e1!3m2!1sfr!2stn!4v1774829488016!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          width="600" 
+          height="450" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="EmpowerTech Training Center location on Google Maps"
+          aria-label="Map showing EmpowerTech Training Center location at 271 Surrey Avenue, Ferndale">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section aria-labelledby="registration-heading">
+      <h3 id="registration-heading">Register for a Program</h3>
+      <p>Interested in one of our training programs? Fill out the form below and we'll get back to you within 24 hours. Our admissions team will contact you to discuss your goals, answer any questions, and help you choose the perfect program for your needs.</p>
+      
+      <form action="submit_form.php" method="POST" novalidate aria-label="Program registration form">
+        <!-- Name Field -->
+        <label for="name" class="required">Full Name:</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          required 
+          aria-required="true"
+          placeholder="e.g., John Smith"
+          autocomplete="name"
+          minlength="2"
+          maxlength="100"
+        >
+
+        <!-- Email Field -->
+        <label for="email" class="required">Email Address:</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          aria-required="true"
+          placeholder="e.g., john@example.com"
+          autocomplete="email"
+        >
+
+        <!-- Program Selection -->
+        <label for="program">Select Program:</label>
+        <select id="program" name="program" aria-label="Choose a training program">
+          <option value="cybersecurity">Cybersecurity & Networking</option>
+          <option value="development">Programming & Development</option>
+          <option value="cloud">Cloud & DevOps</option>
+          <option value="ai">AI & Data Science</option>
+          <option value="entrepreneurship">Digital Entrepreneurship</option>
+        </select>
+
+        <!-- Additional Message -->
+        <label for="message">Additional Notes:</label>
+        <textarea 
+          id="message" 
+          name="message" 
+          rows="4"
+          placeholder="Tell us about your background and goals (optional)"
+          maxlength="500"
+          aria-label="Optional additional information about your interest"
+        ></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit" aria-label="Submit program registration">
+          Submit Registration
+        </button>
+        
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: #666;">
+          <small>* Required fields. We respect your privacy and will never share your information.</small>
+        </p>
+      </form>
+    </section>
+
+    <!-- Additional Call to Action -->
+    <section aria-labelledby="cta-heading" style="background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);">
+      <h3 id="cta-heading">Not Sure Which Program is Right for You?</h3>
+      <p>We offer complimentary 30-minute consultation sessions to help you choose the perfect training path. Our experienced career advisors can assess your current skills, discuss your career goals, review your work history, and recommend the best program to get you where you want to be.</p>
+      <p>During your consultation, we'll also provide information about financing options, scholarship opportunities for qualifying candidates, and our flexible payment plans. Many of our students secure employer sponsorship - we can help you build the business case to present to your manager.</p>
+      <p><strong>Book a free consultation:</strong> <a href="tel:29 444 534">29 444 534</a> or email <a href="ayedamina04@gmail.com">ayedamina04@gmail.com</a></p>
+      <p style="margin-top: 1.5rem;"><strong>Visit Our Campus:</strong> We welcome campus tours! Come see our modern training facilities, meet our instructors, and chat with current students. Tours are available Monday-Friday at 10am, 2pm, and 4pm. Weekend tours by appointment only.</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section aria-labelledby="faq-heading">
+      <h3 id="faq-heading">Frequently Asked Questions</h3>
+      
+      <div style="margin-top: 1.5rem;">
+        <h4 style="color: #667eea; margin-bottom: 0.5rem;">Do I need any prior experience to enroll?</h4>
+        <p>Most of our programs are designed for beginners with no prior experience. However, some advanced programs like AI & Data Science and Cloud & DevOps may require basic programming knowledge. During your consultation, we'll assess your skills and recommend the right starting point.</p>
+        
+        <h4 style="color: #667eea; margin-bottom: 0.5rem; margin-top: 1.5rem;">What are the payment options?</h4>
+        <p>We offer flexible payment plans including monthly installments, upfront payment discounts (save up to 15%), employer sponsorship programs, and SETA funding assistance. Payment plans can be spread over the duration of your program with no interest charges.</p>
+        
+        <h4 style="color: #667eea; margin-bottom: 0.5rem; margin-top: 1.5rem;">What is your job placement rate?</h4>
+        <p>85% of our graduates secure employment within 6 months of completing their training. We have partnerships with over 20 companies actively hiring our graduates, and our career services team provides ongoing support until you land your ideal role.</p>
+        
+        <h4 style="color: #667eea; margin-bottom: 0.5rem; margin-top: 1.5rem;">Are your certifications recognized?</h4>
+        <p>Yes! All our programs are SAQA-accredited, and we prepare students for industry-recognized certifications from CompTIA, Microsoft, Cisco, AWS, and Google. These certifications are globally recognized and highly valued by employers.</p>
+        
+        <h4 style="color: #667eea; margin-bottom: 0.5rem; margin-top: 1.5rem;">Can I study part-time while working?</h4>
+        <p>Absolutely! We offer evening classes (6pm-9pm) and weekend programs specifically designed for working professionals. Many of our successful graduates completed their training while maintaining full-time employment.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EmpowerTech Training Center. All rights reserved.</p>
+    <p style="margin-top: 0.5rem;">
+      <small>Empowering futures through technology education</small>
+    </p>
+  </footer>
+  
+  <!-- Enhanced form validation script -->
+  <script src="form-validation.js"></script>
+
+</body>
+</html>

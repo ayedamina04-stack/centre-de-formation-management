@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier la Formation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        .card { border-radius: 12px; border: none; overflow: hidden; }
+        .card-header { background-color: #ffc107 !important; color: #000; padding: 1.2rem; }
+        .form-label { font-weight: 700; font-size: 0.8rem; color: #333; }
+        .btn-update { background-color: #ffc107; border: none; font-weight: bold; color: #000; }
+        .btn-update:hover { background-color: #e0a800; }
+        .qr-container { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; min-height: 120px; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0 fs-5"><i class="fas fa-edit me-2"></i>Modifier la Formation</h4>
+                        <a href="index.html" class="text-dark"><i class="fas fa-times"></i></a>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <form id="formModifier">
+                            <div class="mb-3">
+                                <label class="form-label">Nom de la formation</label>
+                                <input type="text" id="editNom" class="form-control" required>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Type</label>
+                                    <select id="editType" class="form-select">
+                                        <option value="Présentiel">Présentiel</option>
+                                        <option value="En ligne">En ligne</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Durée (H)</label>
+                                    <input type="number" id="editDuree" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Date Début</label>
+                                    <input type="date" id="editDebut" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Date Fin</label>
+                                    <input type="date" id="editFin" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="qr-container p-3 d-flex justify-content-center align-items-center mb-4">
+                                <div id="qrcodeEdit"></div>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-update flex-grow-1 py-2">
+                                    <i class="fas fa-check me-2"></i>Mettre à jour
+                                </button>
+                                <a href="index.html" class="btn btn-outline-secondary px-4">Annuler</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const formations = JSON.parse(localStorage.getItem('formations')) || [];
+            const f = formations.find(item => item.id == id);
+
+            if (f) {
+                document.getElementById('editNom').value = f.nom;
+                document.getElementById('editType').value = f.type;
+                document.getElementById('editDuree').value = f.duree;
+                document.getElementById('editDebut').value = f.debut;
+                document.getElementById('editFin').value = f.fin;
+                
+                // Générer le QR code initial
+                new QRCode(document.getElementById("qrcodeEdit"), { text: f.nom, width: 90, height: 90 });
+            }
+        });
+    </script>
+</body>
+</html>

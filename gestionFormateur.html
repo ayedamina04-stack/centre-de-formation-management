@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style_formateur.css">
+  <script src="formateur.js"></script>
+</head>
+<body>
+  <form name="f2"  action="formateur.php" method="POST">
+
+
+<div class="carte">
+  <div class="entete">
+    <h1>Gestion des Formateurs</h1>
+    <button class="btn-ajouter" onclick="ouvrirModal()">+ Ajouter Formateur</button>
+    
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Numéro telephone</th>
+        <th>Mot de passe</th>
+        <th>Spécialité</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="tableau"></tbody>
+  </table>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-contenu">
+    <h2 id="titreModal">Ajouter un Formateur</h2>
+ 
+    <label>Nom</label>
+    <input type="text" id="nom" name="nom" placeholder="Nom">
+ 
+    <label>Prénom</label>
+    <input type="text" id="prenom" name="prenom" placeholder="Prénom">
+ 
+    <label>Email</label>
+    <input type="email" id="email" name="email" placeholder="Email">
+    <label>Numéro du telephone</label>
+    <input type="text" id="tel" name="tel" placeholder="numero telephone">
+    <label>Mot de passe</label>
+    <input type="text" id="mot" name="mot" placeholder="Mot de passe">
+
+    <label>Spécialité</label>
+    <select name="specialite" id="specialite">
+      <option value="">-- Choisir --</option>
+      <option value="informatique"> Informatique</option>
+      <option value="marketing">Marketing</option>
+      <option value="mangement">Management</option>
+      <option value="design">Design</option>
+      <option value="finance">Finance</option>
+      <option value="">Autre</option>
+    </select>
+ 
+    <div class="modal-boutons">
+      <button class="btn-annuler" onclick="fermerModal()">Annuler</button>
+     <button type="submit" class="btn-enregistrer">Enregistrer</button>
+    </div>
+  </div>
+</div>
+  </form>
+</body>
+</html>

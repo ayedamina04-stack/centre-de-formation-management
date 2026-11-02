@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="style_inscription.css">
+    <style>
+        #specialiteContainer {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #specialiteContainer select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #f9fff9;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #specialiteContainer select:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="home">
+
+<div class="form-container">
+    <h2>Créer un compte</h2>
+
+    <form name="f" action="inscription.php" method="POST">
+
+        <input type="text"  id="nom"      name="nom"      placeholder="Nom"         required>
+        <input type="text"  id="prenom"   name="prenom"   placeholder="Prénom"      required>
+        <input type="email" id="mail"     name="mail"     placeholder="Email"       required>
+        <input type="tel"   id="tel"      name="tel"      placeholder="Téléphone"   required>
+        <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+
+        <!-- Sélection du rôle — id et name inchangés -->
+        <select id="roleSelect" name="select" onchange="handleRoleChange()">
+            <option value="">-- Choisir un rôle --</option>
+           
+            <option value="formateur">Formateur</option>
+            <option value="participant">Participant</option>
+        </select>
+
+        <span id="errorMsg" style="display:none; color:red; font-size:12px;">
+            Veuillez sélectionner un rôle avant d'enregistrer.
+        </span>
+
+        <!-- Bloc spécialité affiché uniquement si rôle = formateur -->
+        <div id="specialiteContainer">
+            <select id="specialite" name="specialite">
+                <option value="">-- Choisir une spécialité --</option>
+                <option value="finance">💰 Finance</option>
+                <option value="design">🎨 Design</option>
+                <option value="marketing">📢 Marketing</option>
+                <option value="management">📊 Management</option>
+                <option value="informatique">💻 Informatique</option>
+                <option value="ressources_humaines">👥 Ressources Humaines</option>
+                <option value="communication">🗣️ Communication</option>
+                <option value="droit">⚖️ Droit</option>
+            </select>
+        </div>
+
+        <button type="submit" name="bt2" id="bt2">S'inscrire</button>
+    </form>
+
+    <p>Déjà inscrit ? <a href="connexion.html">Connexion</a></p>
+</div>
+
+<script src="in.js"></script>
+
+<script>
+    function handleRoleChange() {
+        const role = document.getElementById('roleSelect').value;
+        const specialiteContainer = document.getElementById('specialiteContainer');
+        const specialiteSelect    = document.getElementById('specialite');
+        const errorMsg            = document.getElementById('errorMsg');
+
+        // Afficher/masquer le bloc spécialité
+        if (role === 'formateur') {
+            specialiteContainer.style.display = 'block';
+            specialiteSelect.required = true;
+        } else {
+            specialiteContainer.style.display = 'none';
+            specialiteSelect.required = false;
+            specialiteSelect.value = ''; // Réinitialiser
+        }
+
+        // Masquer le message d'erreur si un rôle est sélectionné
+        if (role !== '') {
+            errorMsg.style.display = 'none';
+        }
+    }
+
+    // Vérification à la soumission du formulaire
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const role      = document.getElementById('roleSelect').value;
+        const errorMsg  = document.getElementById('errorMsg');
+        const specialite = document.getElementById('specialite').value;
+
+        if (role === '') {
+            e.preventDefault();
+            errorMsg.style.display = 'block';
+            return;
+        }
+
+        if (role === 'formateur' && specialite === '') {
+            e.preventDefault();
+            alert('Veuillez choisir une spécialité ⚠️');
+            return;
+        }
+    });
+</script>
+
+</body>
+</html>

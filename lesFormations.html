@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nos Formations</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #6B4EFF;
+      --purple-dark: #4B35CC;
+      --purple-light: #EDE9FF;
+      --bg: #F3F4FA;
+      --white: #fff;
+      --text: #1A1A2E;
+      --muted: #6B7280;
+      --border: #E0DEFF;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--purple);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1rem 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.2rem;
+    }
+
+    .hero em {
+      color: var(--purple);
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+    }
+
+    .card h2 {
+      margin: 10px 0;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      background: var(--purple-light);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+
+    .btn-inscrire {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 999px;
+      background: var(--purple);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-inscrire:hover {
+      background: var(--purple-dark);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Form<span>Up</span></div>
+  <span style="color:gray;">Plateforme de formations</span>
+</header>
+
+<div class="hero">
+  <h1>Nos <em>Formations</em></h1>
+  <p>Choisissez votre formation et découvrez les sessions disponibles.</p>
+</div>
+
+<div class="grid" id="formations-grid"></div>
+
+<script>
+
+const formations = [
+  { icon:"💰", titre:"Finance", description:"Finance et analyse financière", duree:"3 mois", niveau:"Débutant" },
+  { icon:"🎨", titre:"Design", description:"Design graphique moderne", duree:"2 mois", niveau:"Débutant" },
+  { icon:"📣", titre:"Marketing", description:"Marketing digital", duree:"3 mois", niveau:"Intermédiaire" },
+  { icon:"📊", titre:"Management", description:"Gestion et leadership", duree:"4 mois", niveau:"Intermédiaire" },
+  { icon:"💻", titre:"Informatique", description:"Programmation et réseaux", duree:"4 mois", niveau:"Débutant" },
+  { icon:"👥", titre:"Ressources Humaines", description:"Gestion RH", duree:"3 mois", niveau:"Intermédiaire" },
+  { icon:"🗣️", titre:"Communication", description:"Communication pro", duree:"2 mois", niveau:"Débutant" }
+];
+
+const grid = document.getElementById('formations-grid');
+
+formations.forEach(f => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  card.innerHTML = `
+    <div class="card-icon">${f.icon}</div>
+    <h2>${f.titre}</h2>
+    <p>${f.description}</p>
+
+    <div>
+      <span class="badge">⏱ ${f.duree}</span>
+      <span class="badge">🎓 ${f.niveau}</span>
+    </div>
+
+    <button class="btn-inscrire" onclick="allerSession('${f.titre}')">
+      Voir les sessions
+    </button>
+  `;
+
+  grid.appendChild(card);
+});
+
+function allerSession(titre) {
+
+  const pages = {
+    "Finance": "sessionfinance.html",
+    "Design": "sessiondesign.html",
+    "Communication": "sessioncommunication.html",
+    "Informatique": "sessioninformatique.html",
+    "Management": "sessionManagement.html",
+    "Marketing": "sessionMarketing.html",
+    "Ressources Humaines": "sessionrh.html"
+  };
+
+  if (pages[titre]) {
+    window.location.href = pages[titre];
+  } else {
+    alert("Page non trouvée !");
+  }
+}
+
+</script>
+
+</body>
+</html>

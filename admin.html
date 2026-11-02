@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — Centre de Formation</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <h2>Admin</h2>
+    <p>Centre de Formation</p>
+  </div>
+  <nav class="sidebar-nav">
+    <button class="nav-item active" data-sec="dashboard">
+      <i class="fas fa-desktop"></i> Tableau de Bord
+    </button>
+    <button class="nav-item" data-sec="formateurs">
+      <i class="fas fa-user"></i> Gestion Formateurs
+    </button>
+    <button class="nav-item" data-sec="salles">
+      <i class="fas fa-th"></i> Gestion Salles
+    </button>
+    <button class="nav-item" data-sec="formations">
+      <i class="fas fa-graduation-cap"></i> Gestion Formations
+    </button>
+    <button class="nav-item" data-sec="formations">
+      <i class="fas fa-graduation-cap"></i> Gestion participants
+    </button>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="btn-logout">
+      <i class="fas fa-power-off"></i> Déconnexion
+    </button>
+  </div>
+</aside>
+ 
+<!-- MAIN -->
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-left" id="topbar-left">
+      <h1>Tableau de Bord Admin</h1>
+      <p>Bienvence sur le pannénu d'administration.</p>
+    </div>
+    <div class="topbar-user">
+      <i class="fas fa-user-circle avatar-icon"></i>
+      <span>Admin</span>
+      <i class="fas fa-chevron-down chevron"></i>
+    </div>
+  </header>
+ 
+  <div class="content">
+ 
+    <!-- ══ DASHBOARD ══ -->
+    <div class="section active" id="sec-dashboard">
+      <div class="cards-grid">
+ 
+        <div class="card">
+          <h3>Gestion des Formateurs</h3>
+          <div class="btns-wrap">
+            <button class="action-btn btn-blue" id="dash-add-form">
+              <i class="fas fa-user-plus"></i> <a href="gestionFormateur.html"> Ajouter Formateur</a>
+            </button>
+          <!--  <button class="action-btn btn-orange" onclick="go('formateurs')">
+              <i class="fas fa-pen"></i> Modifier Formateur
+            </button>-->
+            <button class="action-btn btn-red" onclick="go('formateurs')">
+              <i class="fas fa-trash"></i><a href="supprimer_formateur.php"> Supprimer Formateur</a>
+            </button>
+          </div>
+        </div>
+ 
+        <div class="card">
+          <h3>Gestion des Salles</h3>
+          <div class="btns-wrap">
+            <button class="action-btn btn-blue" id="dash-add-salle">
+              <i class="fas fa-plus"></i> <a href="gestion_salle.html"> Ajouter Salle</a>
+            </button>
+            <button class="action-btn btn-orange" onclick="go('salles')">
+              <i class="fas fa-pen"></i><a href="modifier_salle.php"> Modifier Salle</a>
+            </button>
+            <button class="action-btn btn-red" onclick="go('salles')">
+              <i class="fas fa-trash"></i><a href="supprimer_salle.php"> Supprimer Salle</a>
+            </button>
+            <button class="action-btn btn-red" onclick="go('salles')">
+              <i class="fas fa-trash"></i> <a href="recherche.html"> Recherche Salle</a>
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Gestion des participants</h3>
+          <div class="btns-wrap">
+            <button class="action-btn btn-blue" id="dash-add-par">
+              <i class="fas fa-plus"></i><a href="activer.php"> Activer compte</a>
+            </button>
+            <button class="action-btn btn-red" onclick="go('salles')">
+              <i class="fas fa-trash"></i><a href="activer.php"> disactiver compte</a>
+            </button>
+            <button class="action-btn btn-red" onclick="go('salles')">
+              <i class="fas fa-trash"></i> <a href="consulter.php"> consulter les comptes</a>
+            </button>
+          </div>
+        </div>
+ 
+        <div class="card full">
+          <h3>Gestion des Formations</h3>
+          <div class="btns-wrap">
+            <button class="action-btn btn-blue" id="dash-add-fo">
+              <i class="fas fa-graduation-cap"></i> <a href="ajouterF.html"> Ajouter Formation</a>
+            </button>
+            <button class="action-btn btn-orange" onclick="go('formations')">
+              <i class="fas fa-pen"></i> <a href="modifierF.php"> Modifier Formation</a>
+            </button>
+            <button class="action-btn btn-red" onclick="go('formations')">
+              <i class="fas fa-trash"></i><a href="modifierF.php"> Supprimer Formation</a>
+            </button>
+          </div>
+        </div>
+ 
+                <div class="card full">
+          <h3>Gestion des sessions</h3>
+          <div class="btns-wrap">
+            <button class="action-btn btn-blue" id="dash-add-fo">
+              <i class="fas fa-graduation-cap"></i> <a href="ajouter_session.php"> Ajouter Session</a>
+            </button>
+
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+</body>
+</html>
+ 

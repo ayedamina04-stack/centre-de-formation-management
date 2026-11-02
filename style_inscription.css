@@ -1,0 +1,189 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f1f5f9; /* ✅ corrigé : "red" remplacé par gris clair neutre */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PAGE ACCUEIL */
+.home {
+    background: 
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        url("img1.jpg") no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* GLOBAL */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f1f5f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* ✅ ajouté : empile h1 au-dessus du formulaire */
+    justify-content: center;
+    align-items: center;
+}
+
+/* TITRE H1 */
+h1 {
+    text-align: center;
+    width: 100%;            /* ✅ ajouté : prend toute la largeur */
+    margin-bottom: 20px;    /* ✅ ajouté : espace entre h1 et le formulaire */
+    color:white;
+}
+
+
+/* HERO (index) */
+.hero {
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #cbd5e1;
+    margin-bottom: 25px;
+}
+
+/* BOUTONS */
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 25px;
+    background: #38bdf8;
+    color: white;
+    border-radius: 8px;
+    margin: 10px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0ea5e9;
+}
+
+.secondary {
+    background: #22c55e;
+}
+
+.secondary:hover {
+    background: #16a34a;
+}
+
+/* FORMULAIRE CARD */
+.form-container {
+    width: 360px;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    color: black;
+}
+
+/* TITRE */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* INPUT + SELECT */
+input,
+#roleSelect {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* FOCUS */
+input:focus,
+#roleSelect:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 5px rgba(56,189,248,0.4);
+}
+
+/* SELECT PERSONNALISÉ */
+#roleSelect {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #fff;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path fill="%23999" d="M6 8L1 3h10z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #38bdf8;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px; /* ✅ ajouté : léger espacement au-dessus du bouton */
+}
+
+button:hover {
+    background: #0ea5e9;
+}
+
+/* TEXTE */
+p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* MESSAGE ERREUR */
+#errorMsg {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: -5px;
+    margin-bottom: 8px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 400px) {
+    .form-container {
+        width: 90%;
+        padding: 20px; /* ✅ ajouté : évite que le contenu touche les bords sur mobile */
+    }
+}

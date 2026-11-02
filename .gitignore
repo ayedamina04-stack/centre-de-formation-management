@@ -1,0 +1,10 @@
+# Database exports (may contain personal data)
+*.sql
+
+# Uploaded files (check before publishing)
+uploads/*
+!uploads/.gitkeep
+
+# Temporary files
+.DS_Store
+Thumbs.db

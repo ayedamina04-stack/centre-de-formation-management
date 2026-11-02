@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nouvelle Formation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body { background: #f0f4f8; }
+        .card { border-radius: 16px; border: none; }
+        .card-header { background: linear-gradient(135deg, #0d6efd, #0a58ca) !important; border-radius: 16px 16px 0 0 !important; }
+        .qr-preview-box { background: #f8f9fa; border: 1px dashed #ced4da; border-radius: 10px; min-height: 110px; }
+        .section-title { font-size: .75rem; font-weight: 700; text-transform: uppercase;
+                         letter-spacing: .06em; color: #6c757d; margin-bottom: .5rem; }
+
+        /* Toasts */
+        .toast-stack { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast-notif {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 14px 16px; border-radius: 12px; border: 1px solid transparent;
+            max-width: 360px; box-shadow: 0 4px 16px rgba(0,0,0,.1);
+            opacity: 0; transform: translateY(10px);
+            transition: opacity .3s ease, transform .3s ease; background: #fff;
+        }
+        .toast-notif.show { opacity: 1; transform: translateY(0); }
+        .toast-notif.t-success { border-color: #a3cfbb; background: #d1e7dd; }
+        .toast-notif.t-danger  { border-color: #f1aeb5; background: #f8d7da; }
+        .toast-notif.t-info    { border-color: #9ec5fe; background: #cfe2ff; }
+        .toast-title { font-weight: 600; font-size: .875rem; margin: 0 0 2px; }
+        .toast-msg   { font-size: .8125rem; margin: 0; opacity: .85; }
+        .t-success .toast-title, .t-success .toast-msg { color: #0a3622; }
+        .t-danger  .toast-title, .t-danger  .toast-msg { color: #58151c; }
+        .t-info    .toast-title, .t-info    .toast-msg { color: #052c65; }
+        .toast-icon { font-size: 1.1rem; margin-top: 1px; flex-shrink: 0; }
+        .t-success .toast-icon { color: #198754; }
+        .t-danger  .toast-icon { color: #dc3545; }
+        .t-info    .toast-icon { color: #0d6efd; }
+        .toast-close { background: none; border: none; cursor: pointer; opacity: .5; font-size: 1rem; padding: 0; line-height: 1; margin-left: auto; }
+        .toast-close:hover { opacity: 1; }
+        .toast-progress { height: 3px; border-radius: 2px; margin-top: 8px; animation: shrink-bar 3.5s linear forwards; }
+        .t-success .toast-progress { background: #198754; }
+        .t-danger  .toast-progress { background: #dc3545; }
+        .t-info    .toast-progress { background: #0d6efd; }
+        @keyframes shrink-bar { from { width:100%; } to { width:0%; } }
+    </style>
+</head>
+<body>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+
+                <div class="card-header text-white d-flex justify-content-between align-items-center p-3">
+                    <h5 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Nouvelle Formation</h5>
+                    <a href="index.html" class="btn-close btn-close-white"></a>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!--
+                        method="POST" : les données sont envoyées dans le corps de la requête HTTP.
+                        action="formation.php" : cible du serveur qui reçoit et traite les données.
+                        enctype="multipart/form-data" : obligatoire pour l'envoi de fichiers joints.
+                        La soumission reste interceptée par JavaScript (e.preventDefault())
+                        afin d'afficher les toasts et valider avant envoi.
+                    -->
+                    <form id="formAjout" method="POST" action="formation.php"
+                          enctype="multipart/form-data" novalidate>
+
+                        <!-- Informations générales -->
+                        <p class="section-title"><i class="fas fa-info-circle me-1"></i>Informations générales</p>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small">
+                                Titre <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" id="titreInput" name="titre" class="form-control"
+                                   placeholder="Ex : Formation Excel Avancé" required>
+                            <div class="invalid-feedback">Le titre est obligatoire.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small">Description</label>
+                            <textarea name="description" class="form-control" rows="3"
+                                      placeholder="Objectifs, contenu, public cible…"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small">Prérequis</label>
+                            <input type="text" name="prerequis" class="form-control"
+                                   placeholder="Ex : Notions de base en informatique">
+                        </div>
+
+                        <!-- Détails -->
+                        <p class="section-title mt-4"><i class="fas fa-sliders-h me-1"></i>Détails</p>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold small">Type <span class="text-danger">*</span></label>
+                                <select name="type" class="form-select">
+                                    <option value="Presentiel">Présentiel</option>
+                                    <option value="enligne">En ligne</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold small">Durée (h) <span class="text-danger">*</span></label>
+                                <input type="number" id="dureeInput" name="duree" class="form-control"
+                                       min="1" placeholder="Ex : 8" required>
+                                <div class="invalid-feedback">La durée doit être d'au moins 1 heure.</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold small">ID Formateur <span class="text-danger">*</span></label>
+                                <input type="number" id="formateurInput" name="id_formateur" class="form-control"
+                                       min="1" placeholder="ID formateur" required>
+                                <div class="invalid-feedback">L'identifiant du formateur est requis.</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold small">ID Salle</label>
+                                <input type="number" name="id_salle" class="form-control" min="1" placeholder="Optionnel">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold small">Date début <span class="text-danger">*</span></label>
+                                <input type="date" id="debutInput" name="date_debut" class="form-control" required>
+                                <div class="invalid-feedback">La date de début est obligatoire.</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold small">Date fin <span class="text-danger">*</span></label>
+                                <input type="date" id="finInput" name="date_fin" class="form-control" required>
+                                <div class="invalid-feedback" id="err-date-fin">La date de fin est obligatoire.</div>
+                            </div>
+                        </div>
+
+                        <!-- QR Code -->
+                        <p class="section-title mt-4"><i class="fas fa-qrcode me-1"></i>Code QR</p>
+                        <div class="qr-preview-box p-3 d-flex align-items-center mb-4">
+                            <div id="qrcodeContainer" class="me-3 bg-white p-2 border rounded"
+                                 style="min-width:80px;min-height:80px;display:flex;align-items:center;justify-content:center;">
+                                <i class="fas fa-qrcode fa-3x text-muted"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-bold">Aperçu du Code QR</h6>
+                                <small class="text-muted">Généré automatiquement d'après le titre.</small>
+                            </div>
+                        </div>
+
+                        <!-- Documents -->
+                        <p class="section-title"><i class="fas fa-paperclip me-1"></i>Documents joints</p>
+                        <div class="input-group mb-1">
+                            <span class="input-group-text bg-white">
+                                <i class="fas fa-paperclip text-muted"></i>
+                            </span>
+                            <input type="file" name="documents[]" class="form-control"
+                                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple>
+                        </div>
+                        <small class="text-muted d-block mb-4">PDF, Word, JPG, PNG — max 5 Mo par fichier.</small>
+
+                        <!-- Boutons -->
+                        <div class="d-flex gap-2">
+                            <button type="submit" id="btnSubmit" class="btn btn-success flex-grow-1 fw-bold">
+                                <i class="fas fa-save me-1"></i>Enregistrer
+                            </button>
+                            <a href="index.html" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-1"></i>Annuler
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ── Toasts ── */
+function showToast(type, titre, message) {
+    const icons  = { success: 'fas fa-check-circle', danger: 'fas fa-exclamation-circle', info: 'fas fa-info-circle' };
+    const labels = { success: 'Succès', danger: 'Erreur', info: 'Information' };
+    const stack  = document.getElementById('toastStack');
+    const t = document.createElement('div');
+    t.className = `toast-notif t-${type}`;
+    t.innerHTML = `
+        <i class="${icons[type]} toast-icon"></i>
+        <div style="flex:1">
+            <p class="toast-title">${titre || labels[type]}</p>
+            <p class="toast-msg">${message}</p>
+            <div class="toast-progress"></div>
+        </div>
+        <button class="toast-close" onclick="fermerToast(this)">×</button>`;
+    stack.appendChild(t);
+    requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+    setTimeout(() => fermerToast(t.querySelector('.toast-close')), 3500);
+}
+
+function fermerToast(btn) {
+    const t = btn.closest('.toast-notif');
+    if (!t) return;
+    t.classList.remove('show');
+    setTimeout(() => t.remove(), 350);
+}
+
+/* ── QR Code live preview ── */
+let qrInstance = null;
+
+document.getElementById('titreInput').addEventListener('input', function () {
+    const container = document.getElementById('qrcodeContainer');
+    if (!this.value.trim()) {
+        container.innerHTML = '<i class="fas fa-qrcode fa-3x text-muted"></i>';
+        qrInstance = null;
+        return;
+    }
+    container.innerHTML = '';
+    qrInstance = new QRCode(container, {
+        text: 'FORMATION::' + this.value.toUpperCase(),
+        width: 80, height: 80,
+        colorDark: '#0d6efd', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+    });
+});
+
+/* ── Validation ── */
+function validerFormulaire() {
+    let valide = true;
+    document.getElementById('formAjout').querySelectorAll('.is-invalid')
+        .forEach(el => el.classList.remove('is-invalid'));
+
+    const titre     = document.getElementById('titreInput');
+    const duree     = document.getElementById('dureeInput');
+    const formateur = document.getElementById('formateurInput');
+    const debut     = document.getElementById('debutInput');
+    const fin       = document.getElementById('finInput');
+    const errFin    = document.getElementById('err-date-fin');
+
+    if (!titre.value.trim())                               { titre.classList.add('is-invalid');     valide = false; }
+    if (!duree.value || parseInt(duree.value) < 1)         { duree.classList.add('is-invalid');     valide = false; }
+    if (!formateur.value || parseInt(formateur.value) < 1) { formateur.classList.add('is-invalid'); valide = false; }
+    if (!debut.value)                                      { debut.classList.add('is-invalid');     valide = false; }
+
+    if (!fin.value) {
+        fin.classList.add('is-invalid');
+        errFin.textContent = 'La date de fin est obligatoire.';
+        valide = false;
+    } else if (debut.value && fin.value < debut.value) {
+        fin.classList.add('is-invalid');
+        errFin.textContent = 'La date de fin doit être après la date de début.';
+        valide = false;
+    }
+
+    return valide;
+}
+
+/* ── Soumission POST via Fetch ── */
+document.getElementById('formAjout').addEventListener('submit', async function (e) {
+    // On empêche la navigation native du navigateur
+    e.preventDefault();
+
+    if (!validerFormulaire()) {
+        showToast('danger', 'Formulaire incomplet', 'Veuillez corriger les champs en rouge avant d\'enregistrer.');
+        return;
+    }
+
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enregistrement…';
+    showToast('info', 'Envoi en cours', 'La formation est en cours d\'enregistrement…');
+
+    /*
+        FormData(this) récupère automatiquement method="POST" et enctype="multipart/form-data"
+        définis sur le <form>. Il n'est pas nécessaire de redéfinir le Content-Type :
+        le navigateur ajoute lui-même le boundary multipart correct.
+    */
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch(this.action, {
+            method: this.method,   // utilise method="POST" déclaré dans le HTML
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur serveur (HTTP ${response.status})`);
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+            showToast('success', 'Formation enregistrée !', result.message);
+            this.reset();
+            document.getElementById('qrcodeContainer').innerHTML =
+                '<i class="fas fa-qrcode fa-3x text-muted"></i>';
+            qrInstance = null;
+            setTimeout(() => window.location.href = 'index.html', 2500);
+        } else {
+            showToast('danger', 'Échec de l\'enregistrement', result.message);
+        }
+
+    } catch (err) {
+        showToast('danger', 'Erreur de connexion', err.message);
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save me-1"></i>Enregistrer';
+    }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

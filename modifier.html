@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Salles</title>
+    <link rel="stylesheet" href="modifier.css">
+    <script src="modifier.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Modifier une Salle</h2>
+    
+    <form method="POST" action="modifier.php">
+        
+        <!-- 🔍 Recherche -->
+        <div class="search-section">
+            <label>Référence de la salle :</label>
+            <div class="search-box">
+                <input type="text" name="searchRef"
+                       
+                       placeholder="Ex: 4000..." required>
+                <button type="submit" name="verifier" class="btn-search">Verifier</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 🏷 Nom -->
+        <div class="form-group">
+            <label>Nom de la salle</label>
+            <input type="text" name="nom"
+                  
+                  >
+        </div>
+
+        <!-- 🏫 Type -->
+        <div class="form-group">
+            <label>Type de salle</label>
+            <select name="type_salle" >
+                 <option >choisir le type du salle</option>
+                <option value="informatique" >Informatique</option>
+                <option value="conference" >Conférence</option>
+                <option value="classique" >Classique</option>
+            </select>
+        </div>
+
+        <!-- 👥 Capacité -->
+        <div class="form-group">
+            <label>Capacité</label>
+            <input type="number" name="capacite"
+                   >
+        </div>
+
+        <!-- 📅 Disponibilité -->
+        <div class="form-group">
+            <label>Disponibilité</label>
+            <select name="disponibilite" >
+                <option >-------------</option>
+                <option value="Disponible" >Disponible</option>
+                <option value="Non Disponible">Non Disponible</option>
+            </select>
+        </div>
+
+        <!-- 💾 Bouton -->
+        <button type="submit" name="modifier" class="btn-save">Enregistrer les modifications</button>
+               
+               
+           
+        
+    </form>
+
+    <!-- 📢 Message -->
+    <p class="status-msg" style="color: blue; text-align: center; margin-top:10px;">
+        
+    </p>
+
+</div>
+
+</body>
+</html>

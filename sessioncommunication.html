@@ -1,0 +1,148 @@
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessions - Finance</title>
+
+<style>
+:root {
+  --primary: #1A1A2E;
+  --accent: #1B6CA8;
+  --gold: #C9A84C;
+  --bg: #F7F7F7;
+  --white: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+}
+
+/* HEADER */
+header {
+  background: var(--white);
+  padding: 15px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* TITLE */
+h1 {
+  margin-bottom: 30px;
+}
+
+/* SESSION CARD */
+.session {
+  background: var(--white);
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.session:hover {
+  transform: translateY(-5px);
+}
+
+/* INFO GRID */
+.info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.info div {
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: var(--accent);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  Form<span style="color:#C9A84C;">Up</span> — Sessions Communication
+</header>
+
+<div class="container">
+
+  <h1>Formation Communication</h1>
+
+  <!-- SESSION 1 -->
+  <div class="session">
+    <h2>Session 1 </h2>
+
+    <div class="info">
+      <div>⏱ Durée : 30h</div>
+      <div>📅 Date : 1 Mai</div>
+      <div>💺 Places : 20 personnes</div>
+      <div>💰 Prix : 300 DT</div>
+      <div>🏫 Salle : A12</div>
+    </div>
+
+    <a href="inscription2.html" class="btn">S'inscrire</a>
+  </div>
+
+  <!-- SESSION 2 -->
+  <div class="session">
+    <h2>Session 2 </h2>
+
+    <div class="info">
+      <div>⏱ Durée : 30h</div>
+      <div>📅 Date : 20 Juin</div>
+      <div>💺 Places : 15 personnes</div>
+      <div>💰 Prix : 300 DT</div>
+      <div>🏫 Salle : A5</div>
+    </div>
+
+    <a href="inscription2.html" class="btn">S'inscrire</a>
+  </div>
+  <!-- SESSION 3 -->
+  <div class="session">
+    <h2>Session 3 </h2>
+
+    <div class="info">
+      <div>⏱ Durée : 40h</div>
+      <div>📅 Date : 10 juin</div>
+      <div>💺 Places : 30 personnes</div>
+      <div>💰 Prix : 500 DT</div>
+      <div>🏫 Salle : A33</div>
+    </div>
+
+    <a href="inscription2.html" class="btn">S'inscrire</a>
+  </div>
+
+</div>
+
+</body>
+</html>

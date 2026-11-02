@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Formations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow-sm p-3 text-center">
+                <h6 class="text-uppercase small">Total Formations</h6>
+                <h2 id="statTotal" class="fw-bold mb-0">0</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info shadow-sm p-3 text-center">
+                <h6 class="text-uppercase small">En Ligne</h6>
+                <h2 id="statEnLigne" class="fw-bold mb-0">0</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow-sm p-3 text-center">
+                <h6 class="text-uppercase small">Présentiel</h6>
+                <h2 id="statPresentiel" class="fw-bold mb-0">0</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 fw-bold"><i class="fas fa-layer-group me-2"></i>Liste des Formations</h4>
+        </div>
+        
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-white"><i class="fas fa-search text-muted"></i></span>
+                <input type="text" id="searchInput" class="form-control" placeholder="Rechercher une formation par nom...">
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Formation</th>
+                            <th>Type</th>
+                            <th>Durée</th>
+                            <th>Date Début</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
