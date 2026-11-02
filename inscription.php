@@ -1,9 +1,6 @@
 <?php
 // Connexion
-$con = mysqli_connect('localhost', 'root', '', 'centredeformations');
-if (!$con) {
-    die("Échec de connexion : " . mysqli_connect_error());
-}
+require_once __DIR__ . '/db.php';
 
 // Récupération et nettoyage des données
 $nom      = isset($_POST['nom'])      ? trim($_POST['nom'])      : '';

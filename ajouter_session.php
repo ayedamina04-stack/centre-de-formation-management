@@ -1,9 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "centredeformations");
-
-if ($conn->connect_error) {
-    die("Erreur connexion");
-}
+require_once __DIR__ . '/db.php';
 
 // Récupérer les formateurs disponibles
 $sql = "SELECT utilisateur.id_user, utilisateur.nom, utilisateur.prenom

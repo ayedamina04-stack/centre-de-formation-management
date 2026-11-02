@@ -6,17 +6,7 @@ if (empty($_SESSION['csrf_token'])) {
 }
 $csrf = $_SESSION['csrf_token'];
 
-$host = 'localhost';
-$db   = 'centredeformations';
-$user = 'root';
-$pass = '';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Connexion échouée : " . $e->getMessage());
-}
+require_once __DIR__ . '/db_pdo.php';
 
 $message      = '';
 $type_message = '';

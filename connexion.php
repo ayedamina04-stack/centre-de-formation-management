@@ -8,11 +8,7 @@
 <body>
 <?php
     // Connexion à la base de données
-    $con = mysqli_connect('localhost', 'root', '', 'centredeformations');
-
-    if (!$con) {
-        die("Échec de connexion : " . mysqli_connect_error());
-    }
+    require_once __DIR__ . '/db.php';
 
     // Récupération des données POST
     $email = isset($_POST['email'])     ? trim($_POST['email'])     : '';

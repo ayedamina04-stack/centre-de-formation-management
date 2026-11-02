@@ -1,11 +1,6 @@
 <?php
 // Connexion à la base de données
-$conn = new mysqli("localhost", "root", "", "centredeformations");
-
-// Vérifier connexion
-if ($conn->connect_error) {
-    die("Connexion échouée : " . $conn->connect_error);
-}
+require_once __DIR__ . '/db.php';
 
 // Récupérer les sessions
 $sql = "SELECT 

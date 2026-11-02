@@ -8,3 +8,5 @@ uploads/*
 # Temporary files
 .DS_Store
 Thumbs.db
+db.php
+db_pdo.php

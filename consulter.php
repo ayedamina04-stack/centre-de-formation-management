@@ -76,8 +76,7 @@
 </form>
 
 <?php
-$con = mysqli_connect("localhost", "root", "", "centredeformations");
-if (!$con) die("Erreur connexion");
+require_once __DIR__ . '/db.php';
 
 // =======================
 // 🔍 CONSULTATION

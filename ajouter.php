@@ -8,8 +8,7 @@
 <body>
 
     <?php
-$con=mysqli_connect('localhost','root','') or die("echec de connexion serveur");
-mysqli_select_db($con,'centredeformations');
+require_once __DIR__ . '/db.php';
 $ref=$_POST['ref'];
 $nom        = $_POST['nom'];
 $capacite   = $_POST['capacite'];

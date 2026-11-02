@@ -2,18 +2,7 @@
 header('Content-Type: application/json; charset=utf-8');
 
 /* ── Connexion base de données ── */
-$host = 'localhost';
-$db   = 'centredeformations';
-$user = 'root';
-$pass = '';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => 'Connexion échouée : ' . $e->getMessage()]);
-    exit;
-}
+require_once __DIR__ . '/db_pdo.php';
 
 /* ── Récupération des champs ── */
 $titre        = trim($_POST['titre']        ?? '');

@@ -549,13 +549,7 @@
 // ══════════════════════════════════════
 //  CONNEXION
 // ══════════════════════════════════════
-$con = new mysqli("localhost", "root", "", "centredeformations");
-
-if ($con->connect_error) {
-    echo "<div class='toast error'><span class='toast-icon'>✖</span>Erreur de connexion : " . htmlspecialchars($con->connect_error) . "</div>";
-    exit;
-}
-
+require_once __DIR__ . '/db.php';
 // ══════════════════════════════════════
 //  SUPPRESSION (avant tout affichage)
 // ══════════════════════════════════════

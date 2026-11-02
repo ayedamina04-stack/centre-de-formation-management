@@ -189,11 +189,7 @@
 // ════════════════════════════
 // 1. CONNEXION
 // ════════════════════════════
-$con = mysqli_connect("localhost", "root", "", "centredeformations");
-
-if (!$con) {
-    die("<div class='message-erreur'>Erreur de connexion : " . mysqli_connect_error() . "</div>");
-}
+require_once __DIR__ . '/db.php';
 
 $message       = "";
 $salle_modif   = null;   // Salle à afficher dans le formulaire

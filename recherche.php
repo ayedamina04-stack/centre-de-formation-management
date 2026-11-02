@@ -7,10 +7,7 @@
 </head>
 <body>
     <?php
-    $con=mysqli_connect('localhost','root','','centredeformations');
-    if(!$con){
-        eecho("echec de connexion");
-    }
+    require_once __DIR__ . '/db.php';
 
 
  //la partie de la recherche 
